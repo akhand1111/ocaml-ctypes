@@ -1,5 +1,9 @@
 OCAMLMAKEFILE = OCamlMakefile
 
+.PHONY: all
+all: ncl bcl
+	@ :
+	
 -include Makefile.config
 
 SOURCE_FILES := ffi_raw.ml unsigned.mli unsigned.ml dl.mli dl.ml \

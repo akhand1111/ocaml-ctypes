@@ -73,13 +73,12 @@ AS_IF([test "x${enable_version_check}" != "xno"], [
 dnl check for libffi
 
 PKG_CHECK_MODULES([libffi], [libffi])
+CFLAGS=" $libffi_CFLAGS"
+LDFLAGS=" $libffi_LIBS"
+
 AC_DEFUN([FFI_CHECK_CLOSURE],
 [
    AC_MSG_CHECKING([for ffi_prep_closure in libffi])
-   CFLAGS_save="${CFLAGS}"
-   CFLAGS="${CFLAGS} $libffi_CFLAGS"
-   LIBS_save="${LIBS}"
-   LIBS="${LIBS} -lffi $libffi_LIBS"
    AC_LINK_IFELSE(
       [AC_LANG_PROGRAM(
           [[
@@ -90,8 +89,6 @@ ffi_prep_closure(NULL, NULL, NULL, NULL);
           ]])],
       [_ffi_have_closure="yes"],
       [_ffi_have_closure="no"])
-   CFLAGS="${CFLAGS_save}"
-   LIBS="${LIBS_save}"
    AC_MSG_RESULT([${_ffi_have_closure}])
 ])
 FFI_CHECK_CLOSURE

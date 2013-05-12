@@ -15,3 +15,4 @@ m4_ifndef([AC_CONFIG_MACRO_DIRS], [m4_defun([_AM_CONFIG_MACRO_DIRS], [])m4_defun
 m4_include([m4/ax_compare_version.m4])
 m4_include([m4/dlfcn.m4])
 m4_include([m4/ocaml.m4])
+m4_include([m4/pkg.m4])

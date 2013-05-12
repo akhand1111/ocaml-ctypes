@@ -11,8 +11,12 @@ SOURCE_FILES := ffi_raw.ml unsigned.mli unsigned.ml dl.mli dl.ml \
 
 SOURCES = $(SOURCE_FILES:%=src/%)
 RESULT  = ctypes
+PACKS   = unix
 
 include $(OCAMLMAKEFILE)
+
+runtop: ctypes.top
+	./$< -I src
 
 autoconf:
 	aclocal -I m4

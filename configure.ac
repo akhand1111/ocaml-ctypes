@@ -1,6 +1,5 @@
 AC_INIT(ocaml-ctypes,1.0.0)
 AC_COPYRIGHT(Copyright 2013 Jeremy Yallop)
-
 AC_PREREQ([2.69])
 AC_CONFIG_SRCDIR([src/dl_stubs.c])
 AC_CONFIG_HEADERS([config.h])
@@ -95,5 +94,6 @@ FFI_CHECK_CLOSURE
 
 AC_CONFIG_FILES(
   Makefile.config
+  src/META
 )
 AC_OUTPUT

@@ -83,7 +83,7 @@ AC_DEFUN([FFI_CHECK_CLOSURE],
    AC_LINK_IFELSE(
       [AC_LANG_PROGRAM(
           [[
-#include <ffi/ffi.h>
+#include <ffi.h>
           ]],
           [[
 ffi_prep_closure(NULL, NULL, NULL, NULL);

@@ -9,6 +9,8 @@ examples/fts/fts.mllib
 *.cmx
 *.cmxa
 *.cmi
+*.so
+config.h
 ._bcdi/
 ._d/
 ._ncdi/
@@ -17,5 +19,7 @@ autom4te.cache/
 autoscan.log
 config.log
 configure
+config.status
+configure.scan
 #
 *~

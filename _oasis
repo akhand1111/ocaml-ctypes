@@ -47,6 +47,16 @@ Library "ctypes-foreign"
   BuildDepends:     unix,ctypes
   Install:          true
 
+Library "ctypes-stubs"
+  Path:             src/
+  Findlibname:      stubs
+  Findlibparent:    ctypes
+  Modules:          Cstubs
+  CCOpt:            -fPIC -Wall -Wno-unused-variable -O3
+  XMETADescription: Stub generation
+  BuildDepends:     unix,ctypes
+  Install:          true
+
 Library fts
   Path:             examples/fts
   Findlibname:      fts

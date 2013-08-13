@@ -1,5 +1,5 @@
 (* OASIS_START *)
-(* DO NOT EDIT (digest: 8045d88124c910b9a307dc4ccca64f87) *)
+(* DO NOT EDIT (digest: 8d245809c68eb5fe9f3833a3ea22c6ee) *)
 module OASISGettext = struct
 (* # 21 "src/oasis/OASISGettext.ml" *)
 
@@ -481,6 +481,7 @@ let package_default =
        [
           ("ctypes", ["src"]);
           ("ctypes-foreign", ["src"]);
+          ("ctypes-stubs", ["src"]);
           ("fts", ["examples/fts"]);
           ("sigset", ["examples/sigset"]);
           ("ncurses", ["examples/ncurses"]);
@@ -530,6 +531,21 @@ let package_default =
                       A "-O3"
                    ])
             ]);
+          (["oasis_library_ctypes_stubs_ccopt"; "compile"],
+            [
+               (OASISExpr.EBool true,
+                 S
+                   [
+                      A "-ccopt";
+                      A "-fPIC";
+                      A "-ccopt";
+                      A "-Wall";
+                      A "-ccopt";
+                      A "-Wno-unused-variable";
+                      A "-ccopt";
+                      A "-O3"
+                   ])
+            ]);
           (["oasis_library_ncurses_cclib"; "link"],
             [(OASISExpr.EBool true, S [A "-cclib"; A "-lncurses"])]);
           (["oasis_library_ncurses_cclib"; "ocamlmklib"; "c"],
@@ -549,7 +565,7 @@ let package_default =
 
 let dispatch_default = MyOCamlbuildBase.dispatch_default package_default;;
 
-# 553 "myocamlbuild.ml"
+# 569 "myocamlbuild.ml"
 (* OASIS_STOP *)
 
 open Ocamlbuild_plugin

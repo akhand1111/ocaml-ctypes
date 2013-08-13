@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: f72a827285ca66af4a63bf5768afaf43)
+# DO NOT EDIT (digest: 60c0686ffde3b3172372544dc7ef4017)
 version = "0.1"
 description = "Combinators for binding to C libraries without writing any C."
 requires = "unix threads"
@@ -17,6 +17,17 @@ package "top" (
  archive(native) = "ctypes_top.cmxa"
  archive(native, plugin) = "ctypes_top.cmxs"
  exists_if = "ctypes_top.cma"
+)
+
+package "stubs" (
+ version = "0.1"
+ description = "Stub generation"
+ requires = "unix ctypes"
+ archive(byte) = "ctypes-stubs.cma"
+ archive(byte, plugin) = "ctypes-stubs.cma"
+ archive(native) = "ctypes-stubs.cmxa"
+ archive(native, plugin) = "ctypes-stubs.cmxs"
+ exists_if = "ctypes-stubs.cma"
 )
 
 package "foreign" (

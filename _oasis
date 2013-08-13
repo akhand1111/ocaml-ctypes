@@ -91,6 +91,23 @@ Library ctypes_top
   XMETARequires:      ctypes
   XMETADescription:   Toplevel printers for C types
 
+Library stubtest
+  Path:             stubtests
+  Findlibname:      stubtest
+  Modules:          Struct_defs
+  BuildDepends:     ctypes,ctypes.stubs
+  XMETADescription: Test library for struct stub generation
+  Install:          false
+
+Library stubtest_run
+  Path:             stubtests
+  Findlibname:      run
+  FindlibParent:    stubtest
+  Modules:          Generated_stubs
+  BuildDepends:     ctypes.stubs,stubtest
+  XMETADescription: Partly-generated library for struct stub generation testing
+  Install:          false
+
 Executable ncurses_cmd
    Path:            examples/ncurses
    MainIs:          ncurses_cmd.ml
@@ -107,6 +124,24 @@ Executable fts_cmd
    Install:         false
    BuildDepends:    unix,fts
    Custom:          true
+
+Executable test_stub_generator
+  Path:             stubtests
+  MainIs:           generate_stubs.ml
+  Build$:           flag(tests)
+  CompiledObject:   best
+  Install:          false
+  BuildDepends:     stubtest
+  Custom:           true
+
+Executable test_ctypes_struct_stubs
+  Path:             stubtests
+  MainIs:           test_struct_stubs.ml
+  Build$:           flag(tests)
+  CompiledObject:   best
+  Install:          false
+  BuildDepends:     oUnit,ctypes.foreign,stubtest.run
+  Custom:           true
 
 Executable test_ctypes_raw
   Path:             tests
@@ -402,6 +437,11 @@ Test test_complex
 Test test_callback_lifetime
   Run$:             flag(tests)
   Command:          $test_ctypes_callback_lifetime
+  WorkingDirectory: tests
+
+Test test_struct_stubs
+  Run$:             flag(tests)
+  Command:          $test_ctypes_struct_stubs
   WorkingDirectory: tests
 
 Document ctypes

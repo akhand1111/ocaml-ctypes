@@ -12,3 +12,6 @@ src/ctypes_config.ml
 #
 *~
 ctypes.odocl
+stubtests/stub_generator.c
+stubtests/generated_stubs.ml
+stub_generator

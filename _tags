@@ -1,5 +1,5 @@
 # OASIS_START
-# DO NOT EDIT (digest: 815419aa7837c2b1e1d132d46ae17aaf)
+# DO NOT EDIT (digest: 032401c95dbf9937fefb536d40d9c44d)
 # Ignore VCS directories, you can use the same kind of rule outside 
 # OASIS_START/STOP if you want to exclude directories that contains 
 # useless stuff for the build process
@@ -69,6 +69,10 @@
 <top/*.ml{,i}>: pkg_unix
 <top/*.ml{,i}>: pkg_compiler-libs.toplevel
 <top/*.ml{,i}>: pkg_threads
+# Library stubtest
+"stubtests/stubtest.cmxs": use_stubtest
+# Library stubtest_run
+"stubtests/stubtest_run.cmxs": use_stubtest_run
 # Executable ncurses_cmd
 <examples/ncurses/ncurses_cmd.{native,byte}>: use_ncurses
 <examples/ncurses/ncurses_cmd.{native,byte}>: use_ctypes-foreign
@@ -93,6 +97,31 @@
 <examples/fts/*.ml{,i}>: pkg_unix
 <examples/fts/*.ml{,i}>: pkg_threads
 <examples/fts/fts_cmd.{native,byte}>: custom
+# Executable test_stub_generator
+<stubtests/generate_stubs.{native,byte}>: use_stubtest
+<stubtests/generate_stubs.{native,byte}>: use_ctypes-stubs
+<stubtests/generate_stubs.{native,byte}>: use_ctypes
+<stubtests/generate_stubs.{native,byte}>: pkg_unix
+<stubtests/generate_stubs.{native,byte}>: pkg_threads
+<stubtests/generate_stubs.{native,byte}>: custom
+# Executable test_ctypes_struct_stubs
+<stubtests/test_struct_stubs.{native,byte}>: use_stubtest_run
+<stubtests/test_struct_stubs.{native,byte}>: use_stubtest
+<stubtests/test_struct_stubs.{native,byte}>: use_ctypes-stubs
+<stubtests/test_struct_stubs.{native,byte}>: use_ctypes-foreign
+<stubtests/test_struct_stubs.{native,byte}>: use_ctypes
+<stubtests/test_struct_stubs.{native,byte}>: pkg_unix
+<stubtests/test_struct_stubs.{native,byte}>: pkg_oUnit
+<stubtests/test_struct_stubs.{native,byte}>: pkg_threads
+<stubtests/*.ml{,i}>: use_stubtest_run
+<stubtests/*.ml{,i}>: use_stubtest
+<stubtests/*.ml{,i}>: use_ctypes-stubs
+<stubtests/*.ml{,i}>: use_ctypes-foreign
+<stubtests/*.ml{,i}>: use_ctypes
+<stubtests/*.ml{,i}>: pkg_unix
+<stubtests/*.ml{,i}>: pkg_oUnit
+<stubtests/*.ml{,i}>: pkg_threads
+<stubtests/test_struct_stubs.{native,byte}>: custom
 # Executable test_ctypes_raw
 <tests/test_raw.{native,byte}>: use_ctypes-foreign
 <tests/test_raw.{native,byte}>: use_ctypes

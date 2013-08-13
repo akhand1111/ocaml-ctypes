@@ -1,0 +1,22 @@
+# OASIS_START
+# DO NOT EDIT (digest: db35071bcfb9aad10c3e3080662c9e68)
+version = "0.1"
+description = "Test library for struct stub generation"
+requires = "ctypes ctypes.stubs"
+archive(byte) = "stubtest.cma"
+archive(byte, plugin) = "stubtest.cma"
+archive(native) = "stubtest.cmxa"
+archive(native, plugin) = "stubtest.cmxs"
+exists_if = "stubtest.cma"
+package "run" (
+ version = "0.1"
+ description = "Partly-generated library for struct stub generation testing"
+ requires = "ctypes.stubs stubtest"
+ archive(byte) = "stubtest_run.cma"
+ archive(byte, plugin) = "stubtest_run.cma"
+ archive(native) = "stubtest_run.cmxa"
+ archive(native, plugin) = "stubtest_run.cmxs"
+ exists_if = "stubtest_run.cma"
+)
+# OASIS_STOP
+

@@ -16,6 +16,7 @@
 #include <string.h>
 #include <complex.h>
 
+#include "test_functions.h"
 
 typedef int intfun(int, int);
 
@@ -416,4 +417,9 @@ int invoke_stored_callback(int x)
 vintfun *return_callback(vintfun *callback)
 {
   return callback;
+}
+
+int add_padded_struct_fields(struct padded_struct *p)
+{
+  return p->i + p->j;
 }

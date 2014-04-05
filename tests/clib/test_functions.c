@@ -16,8 +16,7 @@
 #include <string.h>
 #include <complex.h>
 
-
-typedef int intfun(int, int);
+#include "test_functions.h"
 
 static int add(int x, int y) { return x + y; }
 static int times(int x, int y) { return x * y; }
@@ -27,14 +26,10 @@ int higher_order_1(intfun *callback, int x, int y)
   return callback(x, y) == x + y;
 }
 
-typedef int acceptor(intfun *, int, int);
-
 int higher_order_3(acceptor *callback, intfun *fn, int x, int y)
 {
   return callback(fn, x, y);
 }
-
-typedef int vintfun(int);
 
 int higher_order_simplest(vintfun *callback)
 {
@@ -108,12 +103,6 @@ int *pass_pointer_through(int *a, int *b, int i)
   return (i >= 0) ? a : b;
 }
 
-struct simple {
-  int i;
-  double f;
-  struct simple *self;
-};
-
 int accept_struct(struct simple simple)
 {
   return simple.i + (int)simple.f + (simple.self == NULL ? 1 : 0);
@@ -162,16 +151,6 @@ void concat_strings(const char **sv, int sc, char *buffer)
   *buffer = '\0';
 }
 
-union number {
-  int i;
-  double d;
-};
-
-struct tagged {
-  char tag;
-  union number num;
-};
-
 double accepts_pointer_to_array_of_structs(struct tagged(*arr)[5])
 {
   double sum = 0.0;
@@ -193,12 +172,7 @@ double accepts_pointer_to_array_of_structs(struct tagged(*arr)[5])
   return sum;
 }
 
-#define GLOBAL_STRING "global string"
-
-struct global_struct {
-  size_t len;
-  const char str[sizeof GLOBAL_STRING];
-} global_struct = { sizeof GLOBAL_STRING - 1, GLOBAL_STRING };
+struct global_struct global_struct = { sizeof GLOBAL_STRING - 1, GLOBAL_STRING };
 
 /* OO-style example */
 struct animal_methods;
@@ -275,7 +249,7 @@ int accept_pointers(float *float_p,
                     int *int_p,
                     long *long_p,
                     long long *llong_p,
-                    int *nativeint_p,
+                    intnat *nativeint_p,
                     int8_t *int8_t_p,
                     int16_t *int16_t_p,
                     int32_t *int32_t_p,
@@ -328,15 +302,12 @@ int accepting_pointer_to_function_pointer(intfun **pfp)
   return (*pfp)(20, 4);
 }
 
-typedef int pintfun1(int *, int *);
 int passing_pointers_to_callback(pintfun1 *f)
 {
   int x = 3, y = 4;
   return f(&x, &y);
 }
 
-
-typedef int *pintfun2(int, int);
 int accepting_pointer_from_callback(pintfun2 *f)
 {
   int *p = f(7, 8);
@@ -359,6 +330,8 @@ int retrieve_INT_MAX(void) { return INT_MAX; }
 unsigned int retrieve_UINT_MAX(void) { return UINT_MAX; }
 long retrieve_LONG_MAX(void) { return LONG_MAX; }
 long retrieve_LONG_MIN(void) { return LONG_MIN; }
+long retrieve_nLONG_MAX(void) { return LONG_MAX; }
+long retrieve_nLONG_MIN(void) { return LONG_MIN; }
 unsigned long retrieve_ULONG_MAX(void) { return ULONG_MAX; }
 long long retrieve_LLONG_MAX(void) { return LLONG_MAX; }
 long long retrieve_LLONG_MIN(void) { return LLONG_MIN; }
@@ -416,4 +389,49 @@ int invoke_stored_callback(int x)
 vintfun *return_callback(vintfun *callback)
 {
   return callback;
+}
+
+struct one_int return_struct_by_value(void)
+{
+  struct one_int v = { 3 };
+  return v;
+};
+
+/* naive matrix operations */
+void matrix_mul(int lrows, int lcols, int rcols,
+                double *l, double *r, double *prod)
+{
+  int i, j, k;
+  for (i = 0; i < lrows; i++) {
+    for (j = 0; j < rcols; j++) {
+      prod[i * rcols + j] = 0.0;
+      for (k = 0; k < lcols; k++) {
+        prod[i * rcols + j] += l[i * lcols + k] * r[k * rcols + j];
+      }
+    }
+  }
+}
+
+double *matrix_transpose(int rows, int cols, double *matrix)
+{
+  int i, j;
+  double *rv = malloc(rows * cols * sizeof *rv);
+
+  for (i = 0; i < rows; i++)
+    for (j = 0; j < cols; j++)
+      rv[j * rows + i] = matrix[i * cols + j];
+
+  return rv;
+}
+
+int (*plus_callback)(int) = NULL;
+
+/* Sum the range [a, b] */
+int sum_range_with_plus_callback(int a, int b)
+{
+  int sum = 0, i = 0;
+  for (i = a; i <= b; i++) {
+    sum += i;
+  }
+  return sum;
 }

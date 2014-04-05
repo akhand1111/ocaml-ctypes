@@ -48,8 +48,12 @@ value ctypes_resolve_dl_flag(value flag)
     case _RTLD_LAZY:     rv = RTLD_LAZY;     break;
     case _RTLD_NOW:      rv = RTLD_NOW;      break;
     case _RTLD_GLOBAL:   rv = RTLD_GLOBAL;   break;
+#ifdef _RTLD_NODELETE
     case _RTLD_NODELETE: rv = RTLD_NODELETE; break;
+#endif /* _RTLD_NODELETE */
+#ifdef _RTLD_NOLOAD
     case _RTLD_NOLOAD:   rv = RTLD_NOLOAD;   break;
+#endif /* _RTLD_NOLOAD */
 #ifdef RTLD_DEEPBIND
     case _RTLD_DEEPBIND: rv = RTLD_DEEPBIND; break;
 #endif /* _RTLD_DEEPBIND */

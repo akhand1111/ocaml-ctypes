@@ -66,8 +66,6 @@ static enum arithmetic _underlying_type(size_t typeinfo)
     return Val_int(underlying);                              \
   }
 
-EXPOSE_TYPEINFO(blkcnt_t)
-EXPOSE_TYPEINFO(blksize_t)
 EXPOSE_TYPEINFO(clock_t)
 EXPOSE_TYPEINFO(dev_t)
 EXPOSE_TYPEINFO(fsblkcnt_t)

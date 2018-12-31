@@ -1,0 +1,12 @@
+(library
+ (name ncurses)
+ (c_library_flags -lncurses)
+ (modules ncurses)
+ (libraries ctypes-foreign
+ ;; TODO below only needed until https://github.com/ocaml/dune/issues/1724
+   ctypes-foreign.unthreaded))
+
+(executables
+ (names ncurses_cmd)
+ (modules ncurses_cmd)
+ (libraries ncurses))

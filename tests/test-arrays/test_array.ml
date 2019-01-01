@@ -9,7 +9,8 @@ open OUnit2
 open Ctypes
 
 
-let testlib = Dl.(dlopen ~filename:"clib/libtest_functions.so" ~flags:[RTLD_NOW])
+(* TODO not needed anymore?
+ * let testlib = Dl.(dlopen ~filename:"clib/libtest_functions.so" ~flags:[RTLD_NOW]) *)
 
 
 (*

@@ -1,11 +1,8 @@
 ANDROID_REPOSITORY=git://github.com/whitequark/opam-cross-android
 export OCAMLFINDFLAGS
 
-case "$OCAML_VERSION" in
-4.01.0) ppa=avsm/ocaml41+opam12 ;;
-4.02.3) ppa=avsm/ocaml42+opam12 ;;
-*) ppa=avsm/ocaml42+opam12; use_opam=true ;;
-esac
+ppa=avsm/ppa
+use_opam=true
 
 install_on_linux () {
   echo "yes" | sudo add-apt-repository ppa:$ppa
@@ -16,7 +13,7 @@ install_on_linux () {
       opam update
       opam switch -q $OCAML_VERSION
   else
-      sudo apt-get install -qq ocaml ocaml-native-compilers camlp4-extra opam
+      sudo apt-get install -qq ocaml ocaml-native-compilers opam
       opam init
       opam update
   fi

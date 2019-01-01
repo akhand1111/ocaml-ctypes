@@ -1,3 +1,0 @@
-requires(-mt) = "ctypes-foreign.unthreaded"
-requires(mt) = "ctypes-foreign.threaded"
-# DUNE_GEN 

@@ -8,11 +8,12 @@ homepage: "https://github.com/ocamllabs/ocaml-ctypes"
 bug-reports: "http://github.com/ocamllabs/ocaml-ctypes/issues"
 pin-depends: [
   [ "integers.dev" "git+http://github.com/yallop/ocaml-integers.git" ]
-  [ "dune.dev" "git+http://github.com/ocaml/dune.git" ]
+  [ "dune.dev" "git+http://github.com/Chris00/dune.git" ]
 ]
 depends: [
   "ocaml" {>= "4.02.3"}
   "integers"
+  "bisect_ppx"
   "dune" {build}
   "conf-pkg-config" {build}
   "lwt" {with-test & < "4.0.0"}
@@ -20,7 +21,6 @@ depends: [
   "conf-ncurses" {with-test}
 ]
 depopts: [
-  "bisect_ppx" {with-test}
   "ocveralls" {with-test}
 ]
 build: [

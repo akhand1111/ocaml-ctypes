@@ -1,5 +1,6 @@
 (library
  (name ctypes_foreign)
  (public_name ctypes-foreign)
- ;; TODO below needed until https://github.com/ocaml/dune/issues/1724 is resolved
- (libraries ctypes-foreign.threaded))
+ (wrapped false)
+ (libraries ctypes-foreign.base)
+ (virtual_modules foreign))

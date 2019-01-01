@@ -1,5 +1,7 @@
 (library
  (name ctypes_foreign_unthreaded)
  (public_name ctypes-foreign.unthreaded)
- (wrapped false)
- (libraries ctypes ctypes-foreign.base))
+ (private_modules ctypes_gc_mutex)
+ (preprocess (pps bisect_ppx -conditional))
+ (implements ctypes-foreign)
+ (libraries ctypes))

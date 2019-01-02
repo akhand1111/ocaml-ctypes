@@ -8,6 +8,8 @@ script:
     else
        bash -ex .travis-ci.sh;
     fi
+dist:
+  - xenial
 os:
   - linux
   - osx

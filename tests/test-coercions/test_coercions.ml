@@ -57,7 +57,7 @@ let test_struct_first_member_coercions _ =
   let module M = struct
     let s = structure "s"
     let f = field s "f" double
-    let i = field s "i" int
+    let _i = field s "i" int
     let () = seal s
 
     let () = begin
@@ -166,7 +166,7 @@ end
    Check that identity coercions are cost-free.
 *)
 let test_identity_coercions _ =
-  let f = fun x y -> x in
+  let f = fun x _y -> x in
   let fn = int @-> float @-> returning int in
   let f' = coerce_fn fn fn f in
   assert_bool "identity coercions are free" (f' == f)

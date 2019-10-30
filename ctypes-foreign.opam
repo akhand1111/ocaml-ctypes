@@ -39,7 +39,7 @@ depends: [
   "ocaml" {>= "4.02.3"}
   "ctypes" {=version}
   "conf-pkg-config" {build}
-  "lwt" {with-test & < "4.0.0"}
+  "lwt" {with-test}
   "ounit" {with-test}
   "conf-ncurses" {with-test}
   "stdlib-shims" {with-test}

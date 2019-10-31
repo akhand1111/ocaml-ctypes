@@ -12,7 +12,7 @@ depexts: [
   [ ["centos"] ["libffi-devel"] ]
   [ ["oraclelinux"] ["libffi-devel"] ]
   [ ["fedora"] ["libffi-devel"] ]
-  [ ["alpine"] ["libffi-dev"] ]
+  [ ["alpine"] ["libffi-dev" "fts-dev"] ]
   [ ["opensuse"] ["libffi-devel"] ]
   [ ["win32" "cygwinports"] ["libffi" "pkg-config"] ]
  ]
